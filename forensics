@@ -1,0 +1,70 @@
+Hair_color = {
+        "black" : "CCAGCAATCGC",
+        "brown": "GCCAGTGCCG",
+        "blonde": "TTAGCTATCGC",
+    }
+Facial_shape = {
+        "square": "GCCACGG",
+        "round" : "ACCACAA",
+        "oval" : "AGGCCTCA"
+}
+Eye_color = {
+
+        "blue": "TTGTGGTGGC",
+        "green": "GGGAGGTGGC",
+        "brown": "AAGTAGTGAC"
+}
+Gender={
+
+        "female": "TGAAGGACCTTC",
+        "male": "TGCAGGAACTTC"
+}
+Race={
+
+        "white": "AAAACCTCA",
+        "black": "CGACTACAG",
+        "asian": "CGCGGGCCG"
+}
+suspects = {
+        "eva": ["female", "white", "blonde", "blue", "oval"],
+        "larisa": ["female", "white", "brown", "brown", "oval"],
+        "matej": ["male", "white", "black", "blue", "oval"],
+        "miha": ["male", "white", "brown", "green", "square"]
+}
+
+with open("DNA.txt","r") as dna_file:
+    dna=dna_file.read()
+perpetrator=[]
+print ("Our perpetrator has the following characteristics: ")
+for i in Gender:
+    if Gender[i] in dna:
+        print(i)
+        perpetrator.append(i)
+for i in Race:
+    if Race[i] in dna:
+        print(i)
+        perpetrator.append(i)
+
+for i in Hair_color:
+    if Hair_color[i] in dna:
+        print(i + " hair")
+        perpetrator.append(i)
+
+for i in Eye_color:
+    if Eye_color[i] in dna:
+        print(i + " eyes")
+        perpetrator.append(i)
+
+for i in Facial_shape:
+    if Facial_shape[i] in dna:
+        print(i + " face")
+        perpetrator.append(i)
+
+
+for p in suspects:
+    if suspects[p] == perpetrator:
+        print("Perpetrator is  %s" % p.upper() + "!!!")
+        break
+    elif suspects[p] != perpetrator:
+        print ("The real perpetrator is not one of our suspects! Look for new suspects with the characteristics provided!!")
+        break
